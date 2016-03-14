@@ -7,6 +7,7 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 
 /**
@@ -26,6 +27,8 @@ public class FragViewEvent extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private ListView listView;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +67,20 @@ public class FragViewEvent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag_view_event, container, false);
+        View view = inflater.inflate(R.layout.fragment_frag_view_event, container, false);
+
+        listView = (ListView)view.findViewById(R.id.listView);
+
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState){
+
+
+
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
