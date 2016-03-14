@@ -7,7 +7,10 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 
 /**
@@ -28,6 +31,8 @@ public class FragViewEvent extends Fragment {
     private String mParam1;
     private String mParam2;
 
+    private ArrayList<String> eventInfo;
+
     private ListView listView;
 
     private OnFragmentInteractionListener mListener;
@@ -41,15 +46,15 @@ public class FragViewEvent extends Fragment {
      * this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     //* @param param2 Parameter 2.
      * @return A new instance of fragment FragViewEvent.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragViewEvent newInstance(String param1, String param2) {
+    public static FragViewEvent newInstance(ArrayList<String> param1) {
         FragViewEvent fragment = new FragViewEvent();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putStringArrayList(ARG_PARAM1, param1);
+        //args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -58,8 +63,8 @@ public class FragViewEvent extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            eventInfo = getArguments().getStringArrayList(ARG_PARAM1);
+           // mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
@@ -70,6 +75,10 @@ public class FragViewEvent extends Fragment {
         View view = inflater.inflate(R.layout.fragment_frag_view_event, container, false);
 
         listView = (ListView)view.findViewById(R.id.listView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity().getBaseContext(),
+                android.R.layout.simple_list_item_1, eventInfo);
+
+        listView.setAdapter(adapter);
 
 
         return view;

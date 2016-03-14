@@ -12,7 +12,7 @@ public class FragContView extends AppCompatActivity {
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frag_container_view, FragViewEvent.newInstance(null, null))
+                .replace(R.id.frag_container_view, FragViewEvent.newInstance(getIntent().getStringArrayListExtra("infoList")))
                 .addToBackStack(null)
                 .commit();
     }
