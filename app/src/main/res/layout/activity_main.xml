@@ -9,8 +9,29 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.calendar.anthony.calendar.MainActivity">
 
-    <TextView
+    <CalendarView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:id="@+id/calendarView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AddEvent"
+        android:id="@+id/nEvent"
+        android:layout_below="@+id/calendarView"
+        android:layout_alignEnd="@+id/calendarView"
+        android:layout_marginTop="39dp"
+        android:onClick="newEvent"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="View Events"
+        android:layout_alignTop="@+id/nEvent"
+        android:layout_alignParentStart="true"
+        android:id="@+id/vEvents"
+        android:onClick = "viewEvents"/>
 </RelativeLayout>
