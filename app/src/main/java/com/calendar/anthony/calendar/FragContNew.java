@@ -13,7 +13,9 @@ public class FragContNew extends AppCompatActivity {
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.new_event_container, FragNewEvent.newInstance(null, null))
+                .replace(R.id.new_event_container, FragNewEvent.newInstance(getIntent().getIntExtra("day", 13),
+                        getIntent().getIntExtra("month", 2),
+                        getIntent().getIntExtra("year", 2016)))
                 .addToBackStack(null)
                 .commit();
     }

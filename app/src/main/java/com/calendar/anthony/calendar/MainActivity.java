@@ -118,6 +118,10 @@ public class MainActivity extends AppCompatActivity {
 
     public void newEvent(View view){
         Intent intent = new Intent(this, FragContNew.class);
+
+        intent.putExtra("day",day);
+        intent.putExtra("month",month);
+        intent.putExtra("year",year);
         startActivity(intent);
     }
 
