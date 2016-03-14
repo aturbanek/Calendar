@@ -7,6 +7,8 @@ import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 
 /**
@@ -26,6 +28,11 @@ public class FragNewEvent extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private Button submit;
+    private EditText title;
+    private EditText time;
+    private EditText description;
 
     private OnFragmentInteractionListener mListener;
 
@@ -64,7 +71,22 @@ public class FragNewEvent extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_frag_new_event, container, false);
+        View view = inflater.inflate(R.layout.fragment_frag_new_event, container, false);
+
+        submit = (Button)view.findViewById(R.id.submitNew);
+        title = (EditText)view.findViewById(R.id.eTitle);
+        time = (EditText)view.findViewById(R.id.eTime);
+        description = (EditText)view.findViewById(R.id.eInfo);
+
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState)
+    {
+        super.onViewCreated(view, savedInstanceState);
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
