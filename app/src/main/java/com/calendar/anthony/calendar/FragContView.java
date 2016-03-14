@@ -9,5 +9,11 @@ public class FragContView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_frag_cont_view);
+
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.frag_container_view, FragViewEvent.newInstance(null, null))
+                .addToBackStack(null)
+                .commit();
     }
 }
