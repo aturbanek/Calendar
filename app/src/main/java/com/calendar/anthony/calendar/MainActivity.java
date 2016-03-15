@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private int year;
     private ArrayList<Long> eventIDs;
     private ArrayList<String> eventInfo;
-
+    private ArrayList intEventIDs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,13 @@ public class MainActivity extends AppCompatActivity {
                 //the relevant fragments.
                 eventIDs = getEventIDs(day, month, year);
                 eventInfo = getEventInfo(eventIDs);
-                Toast.makeText(getApplicationContext(), "" + eventIDs.size() + " " + eventInfo.size(), Toast.LENGTH_LONG).show();
+
+                for(int i=0; i<eventIDs.size(); i++)
+                {
+                    intEventIDs.add(eventIDs.get(i).intValue());
+                }
+
+                Toast.makeText(getApplicationContext(), "" + eventInfo.get(0) + " " + eventInfo.get(1) + " " +eventIDs.get(2), Toast.LENGTH_LONG).show();
 
             }
         });
@@ -104,9 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
         for(int i =0; i < eventIDs.size();i++ ){
             Cursor cur = getContentResolver().query(
-                    CalendarContract.Events.CONTENT_URI, projection, CalendarContract.Events._ID + "+ ?",
+                    CalendarContract.Events.CONTENT_URI, projection, CalendarContract.Events._ID + "= ?",
                     new String[]{Long.toString(eventIDs.get(i))}, null);
             if (cur.moveToFirst()) {
+
                 info.add(cur.getString(3)+ "\n" + cur.getString(4));
             }
             cur.close();
@@ -131,6 +138,14 @@ public class MainActivity extends AppCompatActivity {
 
         intent.putStringArrayListExtra("infoList", eventInfo);
 
+        startActivity(intent);
+    }
+
+    public void deleteEvent(View view) {
+        Intent intent = new Intent(this, FragViewEvent.class);
+
+        intent.putStringArrayListExtra("events", eventInfo);
+        intent.putIntegerArrayListExtra("intIDs", intEventIDs);
         startActivity(intent);
     }
 }

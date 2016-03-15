@@ -4,9 +4,12 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.Fragment;
+import android.provider.CalendarContract;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -27,11 +30,13 @@ public class FragViewEvent extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
     private ArrayList<String> eventInfo;
+    private ArrayList<Integer>intEventIDs;
 
     private ListView listView;
 
@@ -50,11 +55,11 @@ public class FragViewEvent extends Fragment {
      * @return A new instance of fragment FragViewEvent.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragViewEvent newInstance(ArrayList<String> param1) {
+    public static FragViewEvent newInstance(ArrayList<String> param1, ArrayList param2) {
         FragViewEvent fragment = new FragViewEvent();
         Bundle args = new Bundle();
         args.putStringArrayList(ARG_PARAM1, param1);
-        //args.putString(ARG_PARAM2, param2);
+        args.putIntegerArrayList(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -64,6 +69,7 @@ public class FragViewEvent extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             eventInfo = getArguments().getStringArrayList(ARG_PARAM1);
+            intEventIDs = getArguments().getIntegerArrayList((ARG_PARAM2));
            // mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
@@ -80,16 +86,27 @@ public class FragViewEvent extends Fragment {
 
         listView.setAdapter(adapter);
 
-
         return view;
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState){
+        super.onViewCreated(view, savedInstanceState);
 
 
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
+                String[] selArgs = new String[]{Integer.toString(intEventIDs.get(position))};
+                int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),
+                        android.Manifest.permission.WRITE_CALENDAR);
+                int deleted = getActivity().getContentResolver().delete(
+                        CalendarContract.Events.CONTENT_URI,
+                        CalendarContract.Events._ID + " =? ", selArgs);
+            }
+        });
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -12,7 +12,8 @@ public class FragContView extends AppCompatActivity {
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.frag_container_view, FragViewEvent.newInstance(getIntent().getStringArrayListExtra("infoList")))
+                .replace(R.id.frag_container_view, FragViewEvent.newInstance(getIntent().getStringArrayListExtra("infoList"),
+                        getIntent().getIntegerArrayListExtra("intIDs")))
                 .addToBackStack(null)
                 .commit();
     }
