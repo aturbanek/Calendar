@@ -55,7 +55,7 @@ public class FragViewEvent extends Fragment {
      * @return A new instance of fragment FragViewEvent.
      */
     // TODO: Rename and change types and number of parameters
-    public static FragViewEvent newInstance(ArrayList<String> param1, ArrayList param2) {
+    public static FragViewEvent newInstance(ArrayList<String> param1, ArrayList<Integer> param2) {
         FragViewEvent fragment = new FragViewEvent();
         Bundle args = new Bundle();
         args.putStringArrayList(ARG_PARAM1, param1);
@@ -97,7 +97,6 @@ public class FragViewEvent extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
 
                 String[] selArgs = new String[]{Integer.toString(intEventIDs.get(position))};
                 int permissionCheck = ContextCompat.checkSelfPermission(getActivity(),

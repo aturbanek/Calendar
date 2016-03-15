@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
     private int year;
     private ArrayList<Long> eventIDs;
     private ArrayList<String> eventInfo;
-    private ArrayList intEventIDs;
+    private ArrayList<Integer> intEventIDs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
                 //the relevant fragments.
                 eventIDs = getEventIDs(day, month, year);
                 eventInfo = getEventInfo(eventIDs);
-
+                intEventIDs = new ArrayList<>();
                 for(int i=0; i<eventIDs.size(); i++)
                 {
                     intEventIDs.add(eventIDs.get(i).intValue());
@@ -137,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         intent.putStringArrayListExtra("infoList", eventInfo);
+        intent.putIntegerArrayListExtra("intIDs", intEventIDs);
 
         startActivity(intent);
     }
