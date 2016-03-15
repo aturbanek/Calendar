@@ -104,6 +104,7 @@ public class FragViewEvent extends Fragment {
                 int deleted = getActivity().getContentResolver().delete(
                         CalendarContract.Events.CONTENT_URI,
                         CalendarContract.Events._ID + " =? ", selArgs);
+                getActivity().finish();
             }
         });
     }

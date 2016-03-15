@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                     intEventIDs.add(eventIDs.get(i).intValue());
                 }
 
-                Toast.makeText(getApplicationContext(), "" + eventInfo.get(0) + " " + eventInfo.get(1) + " " +eventIDs.get(2), Toast.LENGTH_LONG).show();
+               // Toast.makeText(getApplicationContext(), "" + eventInfo.get(0) + " " + eventInfo.get(1) + " " +eventIDs.get(2), Toast.LENGTH_LONG).show();
 
             }
         });
